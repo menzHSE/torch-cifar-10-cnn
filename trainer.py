@@ -72,7 +72,7 @@ class Trainer:
 
 
     def _setup_logger(self):
-        logging.basicConfig(lstream=sys.stdout, evel = self.log_level, force=True)
+        logging.basicConfig(stream=sys.stdout, level = self.log_level, force=True)
         self.logger = logging.getLogger('Trainer')
 
         self.logger_stream_handler = logging.StreamHandler()
