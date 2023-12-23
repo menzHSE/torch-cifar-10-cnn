@@ -2,6 +2,7 @@ import time
 import datetime
 import logging
 import torch
+import sys
 import numpy as np
 
 class Trainer:
@@ -71,7 +72,7 @@ class Trainer:
 
 
     def _setup_logger(self):
-        logging.basicConfig(level = self.log_level, force=True)
+        logging.basicConfig(lstream=sys.stdout, evel = self.log_level, force=True)
         self.logger = logging.getLogger('Trainer')
 
         self.logger_stream_handler = logging.StreamHandler()
