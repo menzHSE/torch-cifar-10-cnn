@@ -28,8 +28,10 @@ def train(device, batch_size, num_epochs, learning_rate, cifar_version):
     # Instantiate the CNN
     cnn = model.CNN(num_classes=10 if cifar_version == "CIFAR-10" else 100)
 
-    # print summary
-    summary(cnn, input_size=(1, 3, 32, 32), row_settings=["var_names"])
+    # print summary and correctly flush the stream
+    model_stats = summary(cnn, input_size=(1, 3, 32, 32), row_settings=["var_names"])
+    print(model_stats, flush=True)
+    time.sleep(1)
 
     # create trainer
     # Loss function, see https://pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html#torch.nn.CrossEntropyLoss
