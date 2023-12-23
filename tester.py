@@ -1,6 +1,7 @@
 import time
 import datetime
 import logging
+import sys
 import torch
 import numpy as np
 
@@ -50,7 +51,7 @@ class Tester:
 
 
     def _setup_logger(self):
-        logging.basicConfig(level = self.log_level, force=True)
+        logging.basicConfig(stream=sys.stdout, level = self.log_level, force=True)
         self.logger = logging.getLogger('Tester')
 
         self.logger_stream_handler = logging.StreamHandler()
