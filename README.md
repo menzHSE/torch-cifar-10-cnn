@@ -49,16 +49,16 @@ options:
 ### Train on CIFAR-10
 `python train.py`
 
-This uses an 80GB NVIDIA A100. 
+This uses an 80GB NVIDIA H100. 
 
 ```
-$  python train.py
+$  python train.py --batchsize=256
 Using device: cuda
-NVIDIA A100 80GB PCIe
+NVIDIA H100 PCIe
 Options:
   Device: GPU
   Seed: 0
-  Batch size: 128
+  Batch size: 256
   Number of epochs: 30
   Learning rate: 0.0003
   Dataset: CIFAR-10
@@ -96,81 +96,81 @@ Params size (MB): 2.20
 Estimated Total Size (MB): 3.13
 ==========================================================================================
 
-[Epoch   0] :  .... done (391 batches)
-[Epoch   0] : | time: 16.984s | trainLoss:  1.861 | trainAccuracy:  0.310 | valLoss:  1.575 | valAccuracy:  0.424 | Throughput:  33628.809 img/s |
-[Epoch   1] :  .... done (391 batches)
-[Epoch   1] : | time:  3.512s | trainLoss:  1.485 | trainAccuracy:  0.463 | valLoss:  1.393 | valAccuracy:  0.491 | Throughput:  30652.835 img/s |
-[Epoch   2] :  .... done (391 batches)
-[Epoch   2] : | time:  3.241s | trainLoss:  1.339 | trainAccuracy:  0.515 | valLoss:  1.265 | valAccuracy:  0.546 | Throughput:  37853.836 img/s |
-[Epoch   3] :  .... done (391 batches)
-[Epoch   3] : | time:  3.324s | trainLoss:  1.225 | trainAccuracy:  0.560 | valLoss:  1.162 | valAccuracy:  0.589 | Throughput:  30052.086 img/s |
-[Epoch   4] :  .... done (391 batches)
-[Epoch   4] : | time:  3.175s | trainLoss:  1.127 | trainAccuracy:  0.596 | valLoss:  1.089 | valAccuracy:  0.614 | Throughput:  38988.496 img/s |
-[Epoch   5] :  .... done (391 batches)
-[Epoch   5] : | time:  3.291s | trainLoss:  1.042 | trainAccuracy:  0.629 | valLoss:  1.020 | valAccuracy:  0.639 | Throughput:  36773.098 img/s |
-[Epoch   6] :  .... done (391 batches)
-[Epoch   6] : | time:  3.310s | trainLoss:  0.976 | trainAccuracy:  0.653 | valLoss:  0.964 | valAccuracy:  0.659 | Throughput:  36509.443 img/s |
-[Epoch   7] :  .... done (391 batches)
-[Epoch   7] : | time:  3.206s | trainLoss:  0.913 | trainAccuracy:  0.680 | valLoss:  0.909 | valAccuracy:  0.679 | Throughput:  37675.749 img/s |
-[Epoch   8] :  .... done (391 batches)
-[Epoch   8] : | time:  3.284s | trainLoss:  0.863 | trainAccuracy:  0.697 | valLoss:  0.878 | valAccuracy:  0.691 | Throughput:  33247.502 img/s |
-[Epoch   9] :  .... done (391 batches)
-[Epoch   9] : | time:  3.421s | trainLoss:  0.815 | trainAccuracy:  0.714 | valLoss:  0.871 | valAccuracy:  0.688 | Throughput:  32885.911 img/s |
-[Epoch  10] :  .... done (391 batches)
-[Epoch  10] : | time:  3.291s | trainLoss:  0.769 | trainAccuracy:  0.727 | valLoss:  0.824 | valAccuracy:  0.710 | Throughput:  38367.823 img/s |
-[Epoch  11] :  .... done (391 batches)
-[Epoch  11] : | time:  3.080s | trainLoss:  0.728 | trainAccuracy:  0.744 | valLoss:  0.797 | valAccuracy:  0.725 | Throughput:  38407.942 img/s |
-[Epoch  12] :  .... done (391 batches)
-[Epoch  12] : | time:  3.185s | trainLoss:  0.694 | trainAccuracy:  0.756 | valLoss:  0.828 | valAccuracy:  0.717 | Throughput:  37978.836 img/s |
-[Epoch  13] :  .... done (391 batches)
-[Epoch  13] : | time:  3.101s | trainLoss:  0.657 | trainAccuracy:  0.768 | valLoss:  0.766 | valAccuracy:  0.740 | Throughput:  39445.433 img/s |
-[Epoch  14] :  .... done (391 batches)
-[Epoch  14] : | time:  3.223s | trainLoss:  0.627 | trainAccuracy:  0.779 | valLoss:  0.772 | valAccuracy:  0.734 | Throughput:  36641.787 img/s |
-[Epoch  15] :  .... done (391 batches)
-[Epoch  15] : | time:  3.163s | trainLoss:  0.590 | trainAccuracy:  0.792 | valLoss:  0.753 | valAccuracy:  0.745 | Throughput:  33410.927 img/s |
-[Epoch  16] :  .... done (391 batches)
-[Epoch  16] : | time:  3.228s | trainLoss:  0.558 | trainAccuracy:  0.805 | valLoss:  0.728 | valAccuracy:  0.752 | Throughput:  35762.769 img/s |
-[Epoch  17] :  .... done (391 batches)
-[Epoch  17] : | time:  3.205s | trainLoss:  0.533 | trainAccuracy:  0.813 | valLoss:  0.723 | valAccuracy:  0.756 | Throughput:  35364.081 img/s |
-[Epoch  18] :  .... done (391 batches)
-[Epoch  18] : | time:  3.081s | trainLoss:  0.504 | trainAccuracy:  0.821 | valLoss:  0.736 | valAccuracy:  0.757 | Throughput:  33879.809 img/s |
-[Epoch  19] :  .... done (391 batches)
-[Epoch  19] : | time:  3.251s | trainLoss:  0.476 | trainAccuracy:  0.830 | valLoss:  0.734 | valAccuracy:  0.758 | Throughput:  35239.992 img/s |
-[Epoch  20] :  .... done (391 batches)
-[Epoch  20] : | time:  3.128s | trainLoss:  0.453 | trainAccuracy:  0.841 | valLoss:  0.735 | valAccuracy:  0.757 | Throughput:  34609.982 img/s |
-[Epoch  21] :  .... done (391 batches)
-[Epoch  21] : | time:  3.170s | trainLoss:  0.430 | trainAccuracy:  0.847 | valLoss:  0.735 | valAccuracy:  0.764 | Throughput:  33156.163 img/s |
-[Epoch  22] :  .... done (391 batches)
-[Epoch  22] : | time:  3.191s | trainLoss:  0.408 | trainAccuracy:  0.855 | valLoss:  0.747 | valAccuracy:  0.763 | Throughput:  36893.595 img/s |
-[Epoch  23] :  .... done (391 batches)
-[Epoch  23] : | time:  3.080s | trainLoss:  0.390 | trainAccuracy:  0.863 | valLoss:  0.751 | valAccuracy:  0.763 | Throughput:  35040.866 img/s |
-[Epoch  24] :  .... done (391 batches)
-[Epoch  24] : | time:  3.393s | trainLoss:  0.367 | trainAccuracy:  0.870 | valLoss:  0.745 | valAccuracy:  0.771 | Throughput:  33444.080 img/s |
-[Epoch  25] :  .... done (391 batches)
-[Epoch  25] : | time:  3.348s | trainLoss:  0.353 | trainAccuracy:  0.873 | valLoss:  0.755 | valAccuracy:  0.766 | Throughput:  34724.576 img/s |
-[Epoch  26] :  .... done (391 batches)
-[Epoch  26] : | time:  3.234s | trainLoss:  0.331 | trainAccuracy:  0.881 | valLoss:  0.775 | valAccuracy:  0.769 | Throughput:  37748.088 img/s |
-[Epoch  27] :  .... done (391 batches)
-[Epoch  27] : | time:  3.134s | trainLoss:  0.316 | trainAccuracy:  0.888 | valLoss:  0.754 | valAccuracy:  0.771 | Throughput:  36358.492 img/s |
-[Epoch  28] :  .... done (391 batches)
-[Epoch  28] : | time:  3.284s | trainLoss:  0.303 | trainAccuracy:  0.891 | valLoss:  0.809 | valAccuracy:  0.769 | Throughput:  35445.559 img/s |
-[Epoch  29] :  .... done (391 batches)
-[Epoch  29] : | time:  3.254s | trainLoss:  0.291 | trainAccuracy:  0.896 | valLoss:  0.799 | valAccuracy:  0.770 | Throughput:  36884.863 img/s |
-Training finished in 0:01:51.102646 hh:mm:ss.ms
+[Epoch   0] :  .. done (196 batches)
+[Epoch   0] : | time:  6.588s | trainLoss:  1.967 | trainAccuracy:  0.270 | valLoss:  1.770 | valAccuracy:  0.375 | throughput: 130877.626 img/s |
+[Epoch   1] :  .. done (196 batches)
+[Epoch   1] : | time:  4.628s | trainLoss:  1.589 | trainAccuracy:  0.421 | valLoss:  1.485 | valAccuracy:  0.471 | throughput: 133802.976 img/s |
+[Epoch   2] :  .. done (196 batches)
+[Epoch   2] : | time:  4.586s | trainLoss:  1.440 | trainAccuracy:  0.479 | valLoss:  1.392 | valAccuracy:  0.506 | throughput: 130137.737 img/s |
+[Epoch   3] :  .. done (196 batches)
+[Epoch   3] : | time:  4.581s | trainLoss:  1.352 | trainAccuracy:  0.512 | valLoss:  1.324 | valAccuracy:  0.530 | throughput: 130311.775 img/s |
+[Epoch   4] :  .. done (196 batches)
+[Epoch   4] : | time:  4.618s | trainLoss:  1.278 | trainAccuracy:  0.541 | valLoss:  1.254 | valAccuracy:  0.557 | throughput: 131700.278 img/s |
+[Epoch   5] :  .. done (196 batches)
+[Epoch   5] : | time:  4.559s | trainLoss:  1.208 | trainAccuracy:  0.568 | valLoss:  1.193 | valAccuracy:  0.582 | throughput: 130449.208 img/s |
+[Epoch   6] :  .. done (196 batches)
+[Epoch   6] : | time:  4.605s | trainLoss:  1.158 | trainAccuracy:  0.588 | valLoss:  1.120 | valAccuracy:  0.604 | throughput: 132074.401 img/s |
+[Epoch   7] :  .. done (196 batches)
+[Epoch   7] : | time:  4.617s | trainLoss:  1.095 | trainAccuracy:  0.610 | valLoss:  1.073 | valAccuracy:  0.622 | throughput: 131978.492 img/s |
+[Epoch   8] :  .. done (196 batches)
+[Epoch   8] : | time:  4.597s | trainLoss:  1.043 | trainAccuracy:  0.631 | valLoss:  1.044 | valAccuracy:  0.637 | throughput: 132040.753 img/s |
+[Epoch   9] :  .. done (196 batches)
+[Epoch   9] : | time:  4.608s | trainLoss:  0.997 | trainAccuracy:  0.648 | valLoss:  1.035 | valAccuracy:  0.641 | throughput: 132215.981 img/s |
+[Epoch  10] :  .. done (196 batches)
+[Epoch  10] : | time:  4.614s | trainLoss:  0.953 | trainAccuracy:  0.665 | valLoss:  1.000 | valAccuracy:  0.655 | throughput: 129597.310 img/s |
+[Epoch  11] :  .. done (196 batches)
+[Epoch  11] : | time:  4.596s | trainLoss:  0.908 | trainAccuracy:  0.681 | valLoss:  0.924 | valAccuracy:  0.679 | throughput: 132150.477 img/s |
+[Epoch  12] :  .. done (196 batches)
+[Epoch  12] : | time:  4.606s | trainLoss:  0.872 | trainAccuracy:  0.696 | valLoss:  0.897 | valAccuracy:  0.688 | throughput: 123408.232 img/s |
+[Epoch  13] :  .. done (196 batches)
+[Epoch  13] : | time:  4.615s | trainLoss:  0.830 | trainAccuracy:  0.709 | valLoss:  0.890 | valAccuracy:  0.693 | throughput: 132708.182 img/s |
+[Epoch  14] :  .. done (196 batches)
+[Epoch  14] : | time:  4.606s | trainLoss:  0.801 | trainAccuracy:  0.718 | valLoss:  0.881 | valAccuracy:  0.696 | throughput: 131591.732 img/s |
+[Epoch  15] :  .. done (196 batches)
+[Epoch  15] : | time:  4.594s | trainLoss:  0.770 | trainAccuracy:  0.729 | valLoss:  0.864 | valAccuracy:  0.704 | throughput: 130495.688 img/s |
+[Epoch  16] :  .. done (196 batches)
+[Epoch  16] : | time:  4.594s | trainLoss:  0.741 | trainAccuracy:  0.739 | valLoss:  0.837 | valAccuracy:  0.713 | throughput: 133671.470 img/s |
+[Epoch  17] :  .. done (196 batches)
+[Epoch  17] : | time:  4.594s | trainLoss:  0.714 | trainAccuracy:  0.750 | valLoss:  0.839 | valAccuracy:  0.715 | throughput: 132751.989 img/s |
+[Epoch  18] :  .. done (196 batches)
+[Epoch  18] : | time:  4.578s | trainLoss:  0.681 | trainAccuracy:  0.764 | valLoss:  0.832 | valAccuracy:  0.718 | throughput: 132079.015 img/s |
+[Epoch  19] :  .. done (196 batches)
+[Epoch  19] : | time:  4.606s | trainLoss:  0.660 | trainAccuracy:  0.771 | valLoss:  0.838 | valAccuracy:  0.720 | throughput: 130263.915 img/s |
+[Epoch  20] :  .. done (196 batches)
+[Epoch  20] : | time:  4.575s | trainLoss:  0.635 | trainAccuracy:  0.780 | valLoss:  0.827 | valAccuracy:  0.724 | throughput: 132863.951 img/s |
+[Epoch  21] :  .. done (196 batches)
+[Epoch  21] : | time:  4.608s | trainLoss:  0.611 | trainAccuracy:  0.786 | valLoss:  0.803 | valAccuracy:  0.729 | throughput: 134081.966 img/s |
+[Epoch  22] :  .. done (196 batches)
+[Epoch  22] : | time:  4.566s | trainLoss:  0.587 | trainAccuracy:  0.795 | valLoss:  0.834 | valAccuracy:  0.727 | throughput: 127359.423 img/s |
+[Epoch  23] :  .. done (196 batches)
+[Epoch  23] : | time:  4.578s | trainLoss:  0.564 | trainAccuracy:  0.802 | valLoss:  0.823 | valAccuracy:  0.729 | throughput: 123822.193 img/s |
+[Epoch  24] :  .. done (196 batches)
+[Epoch  24] : | time:  4.618s | trainLoss:  0.543 | trainAccuracy:  0.808 | valLoss:  0.835 | valAccuracy:  0.730 | throughput: 125872.396 img/s |
+[Epoch  25] :  .. done (196 batches)
+[Epoch  25] : | time:  4.615s | trainLoss:  0.524 | trainAccuracy:  0.815 | valLoss:  0.847 | valAccuracy:  0.729 | throughput: 124479.005 img/s |
+[Epoch  26] :  .. done (196 batches)
+[Epoch  26] : | time:  4.655s | trainLoss:  0.507 | trainAccuracy:  0.821 | valLoss:  0.827 | valAccuracy:  0.733 | throughput: 125991.018 img/s |
+[Epoch  27] :  .. done (196 batches)
+[Epoch  27] : | time:  4.561s | trainLoss:  0.485 | trainAccuracy:  0.831 | valLoss:  0.833 | valAccuracy:  0.737 | throughput: 131916.093 img/s |
+[Epoch  28] :  .. done (196 batches)
+[Epoch  28] : | time:  4.599s | trainLoss:  0.463 | trainAccuracy:  0.837 | valLoss:  0.832 | valAccuracy:  0.737 | throughput: 131616.945 img/s |
+[Epoch  29] :  .. done (196 batches)
+[Epoch  29] : | time:  4.593s | trainLoss:  0.449 | trainAccuracy:  0.841 | valLoss:  0.828 | valAccuracy:  0.743 | throughput: 131435.191 img/s |
+Training finished in 0:02:20.131106 hh:mm:ss.ms
 ```
 
 ### Test on CIFAR-10
 ```
 $ python test.py --model=model_CIFAR-10_029.pth
 Using device: cuda
-NVIDIA A100 80GB PCIe
+NVIDIA H100 PCIe
 Files already downloaded and verified
 Files already downloaded and verified
 Loaded model for CIFAR-10 from model_CIFAR-10_029.pth
 Testing ....
 Test Metrics (10000 test samples):
-  - Accuracy: 0.770
-Testing finished in 0:00:02.605735 hh:mm:ss.ms
+  - Accuracy: 0.743
+Testing finished in 0:00:01.818539 hh:mm:ss.ms
 ```
 
 ## CIFAR-100
@@ -178,17 +178,17 @@ Testing finished in 0:00:02.605735 hh:mm:ss.ms
 ### Train on CIFAR-100
 `python train.py --dataset CIFAR-100`
 
-This uses an 80GB NVIDIA A100. 
+This uses an 80GB NVIDIA H100. 
 
 ```
-$ python train.py  --dataset=CIFAR-100
+$ python train.py --batchsize=256 --dataset=CIFAR-100
 python train.py --dataset CIFAR-100
 Using device: cuda
-NVIDIA A100 80GB PCIe
+NVIDIA H100 PCIe
 Options:
   Device: GPU
   Seed: 0
-  Batch size: 128
+  Batch size: 256
   Number of epochs: 30
   Learning rate: 0.0003
   Dataset: CIFAR-100
@@ -226,67 +226,67 @@ Params size (MB): 2.25
 Estimated Total Size (MB): 3.18
 ==========================================================================================
 
-[Epoch   0] :  .... done (391 batches)
-[Epoch   0] : | time:  3.592s | trainLoss:  4.243 | trainAccuracy:  0.053 | valLoss:  3.885 | valAccuracy:  0.114 | Throughput:  33358.793 img/s |
-[Epoch   1] :  .... done (391 batches)
-[Epoch   1] : | time:  3.361s | trainLoss:  3.618 | trainAccuracy:  0.148 | valLoss:  3.474 | valAccuracy:  0.188 | Throughput:  35651.599 img/s |
-[Epoch   2] :  .... done (391 batches)
-[Epoch   2] : | time:  3.121s | trainLoss:  3.303 | trainAccuracy:  0.205 | valLoss:  3.212 | valAccuracy:  0.232 | Throughput:  39670.841 img/s |
-[Epoch   3] :  .... done (391 batches)
-[Epoch   3] : | time:  3.284s | trainLoss:  3.091 | trainAccuracy:  0.244 | valLoss:  3.033 | valAccuracy:  0.267 | Throughput:  37392.047 img/s |
-[Epoch   4] :  .... done (391 batches)
-[Epoch   4] : | time:  3.185s | trainLoss:  2.926 | trainAccuracy:  0.275 | valLoss:  2.934 | valAccuracy:  0.288 | Throughput:  36484.106 img/s |
-[Epoch   5] :  .... done (391 batches)
-[Epoch   5] : | time:  3.230s | trainLoss:  2.785 | trainAccuracy:  0.304 | valLoss:  2.829 | valAccuracy:  0.305 | Throughput:  39128.082 img/s |
-[Epoch   6] :  .... done (391 batches)
-[Epoch   6] : | time:  3.179s | trainLoss:  2.657 | trainAccuracy:  0.331 | valLoss:  2.757 | valAccuracy:  0.321 | Throughput:  39242.447 img/s |
-[Epoch   7] :  .... done (391 batches)
-[Epoch   7] : | time:  3.205s | trainLoss:  2.545 | trainAccuracy:  0.354 | valLoss:  2.669 | valAccuracy:  0.343 | Throughput:  37550.685 img/s |
-[Epoch   8] :  .... done (391 batches)
-[Epoch   8] : | time:  3.158s | trainLoss:  2.440 | trainAccuracy:  0.377 | valLoss:  2.585 | valAccuracy:  0.364 | Throughput:  37427.010 img/s |
-[Epoch   9] :  .... done (391 batches)
-[Epoch   9] : | time:  3.239s | trainLoss:  2.345 | trainAccuracy:  0.396 | valLoss:  2.591 | valAccuracy:  0.361 | Throughput:  36962.480 img/s |
-[Epoch  10] :  .... done (391 batches)
-[Epoch  10] : | time:  3.226s | trainLoss:  2.263 | trainAccuracy:  0.413 | valLoss:  2.502 | valAccuracy:  0.373 | Throughput:  38853.829 img/s |
-[Epoch  11] :  .... done (391 batches)
-[Epoch  11] : | time:  3.266s | trainLoss:  2.175 | trainAccuracy:  0.431 | valLoss:  2.465 | valAccuracy:  0.387 | Throughput:  37917.850 img/s |
-[Epoch  12] :  .... done (391 batches)
-[Epoch  12] : | time:  3.219s | trainLoss:  2.108 | trainAccuracy:  0.444 | valLoss:  2.511 | valAccuracy:  0.386 | Throughput:  38362.656 img/s |
-[Epoch  13] :  .... done (391 batches)
-[Epoch  13] : | time:  3.146s | trainLoss:  2.032 | trainAccuracy:  0.461 | valLoss:  2.445 | valAccuracy:  0.395 | Throughput:  37668.505 img/s |
-[Epoch  14] :  .... done (391 batches)
-[Epoch  14] : | time:  3.180s | trainLoss:  1.965 | trainAccuracy:  0.477 | valLoss:  2.457 | valAccuracy:  0.398 | Throughput:  39990.809 img/s |
-[Epoch  15] :  .... done (391 batches)
-[Epoch  15] : | time:  3.457s | trainLoss:  1.897 | trainAccuracy:  0.492 | valLoss:  2.461 | valAccuracy:  0.399 | Throughput:  34414.344 img/s |
-[Epoch  16] :  .... done (391 batches)
-[Epoch  16] : | time:  3.214s | trainLoss:  1.838 | trainAccuracy:  0.504 | valLoss:  2.416 | valAccuracy:  0.409 | Throughput:  40104.814 img/s |
-[Epoch  17] :  .... done (391 batches)
-[Epoch  17] : | time:  3.215s | trainLoss:  1.794 | trainAccuracy:  0.513 | valLoss:  2.445 | valAccuracy:  0.412 | Throughput:  37948.732 img/s |
-[Epoch  18] :  .... done (391 batches)
-[Epoch  18] : | time:  3.141s | trainLoss:  1.727 | trainAccuracy:  0.524 | valLoss:  2.430 | valAccuracy:  0.411 | Throughput:  38467.844 img/s |
-[Epoch  19] :  .... done (391 batches)
-[Epoch  19] : | time:  3.249s | trainLoss:  1.684 | trainAccuracy:  0.537 | valLoss:  2.422 | valAccuracy:  0.420 | Throughput:  37616.772 img/s |
-[Epoch  20] :  .... done (391 batches)
-[Epoch  20] : | time:  3.154s | trainLoss:  1.629 | trainAccuracy:  0.549 | valLoss:  2.446 | valAccuracy:  0.416 | Throughput:  38231.580 img/s |
-[Epoch  21] :  .... done (391 batches)
-[Epoch  21] : | time:  3.332s | trainLoss:  1.581 | trainAccuracy:  0.560 | valLoss:  2.444 | valAccuracy:  0.419 | Throughput:  37472.352 img/s |
-[Epoch  22] :  .... done (391 batches)
-[Epoch  22] : | time:  3.230s | trainLoss:  1.531 | trainAccuracy:  0.572 | valLoss:  2.446 | valAccuracy:  0.416 | Throughput:  38628.134 img/s |
-[Epoch  23] :  .... done (391 batches)
-[Epoch  23] : | time:  3.168s | trainLoss:  1.493 | trainAccuracy:  0.580 | valLoss:  2.464 | valAccuracy:  0.424 | Throughput:  37345.034 img/s |
-[Epoch  24] :  .... done (391 batches)
-[Epoch  24] : | time:  3.184s | trainLoss:  1.455 | trainAccuracy:  0.588 | valLoss:  2.479 | valAccuracy:  0.421 | Throughput:  38034.317 img/s |
-[Epoch  25] :  .... done (391 batches)
-[Epoch  25] : | time:  3.283s | trainLoss:  1.410 | trainAccuracy:  0.598 | valLoss:  2.442 | valAccuracy:  0.424 | Throughput:  38234.314 img/s |
-[Epoch  26] :  .... done (391 batches)
-[Epoch  26] : | time:  3.124s | trainLoss:  1.379 | trainAccuracy:  0.608 | valLoss:  2.499 | valAccuracy:  0.424 | Throughput:  38497.559 img/s |
-[Epoch  27] :  .... done (391 batches)
-[Epoch  27] : | time:  3.138s | trainLoss:  1.350 | trainAccuracy:  0.616 | valLoss:  2.484 | valAccuracy:  0.430 | Throughput:  38484.853 img/s |
-[Epoch  28] :  .... done (391 batches)
-[Epoch  28] : | time:  3.153s | trainLoss:  1.316 | trainAccuracy:  0.620 | valLoss:  2.518 | valAccuracy:  0.433 | Throughput:  39567.019 img/s |
-[Epoch  29] :  .... done (391 batches)
-[Epoch  29] : | time:  3.383s | trainLoss:  1.280 | trainAccuracy:  0.629 | valLoss:  2.577 | valAccuracy:  0.423 | Throughput:  35265.599 img/s |
-Training finished in 0:01:37.227602 hh:mm:ss.ms
+[Epoch   0] :  .. done (196 batches)
+[Epoch   0] : | time:  5.337s | trainLoss:  4.359 | trainAccuracy:  0.043 | valLoss:  4.026 | valAccuracy:  0.101 | throughput: 133925.980 img/s |
+[Epoch   1] :  .. done (196 batches)
+[Epoch   1] : | time:  4.565s | trainLoss:  3.782 | trainAccuracy:  0.124 | valLoss:  3.686 | valAccuracy:  0.159 | throughput: 126685.282 img/s |
+[Epoch   2] :  .. done (196 batches)
+[Epoch   2] : | time:  4.557s | trainLoss:  3.528 | trainAccuracy:  0.167 | valLoss:  3.480 | valAccuracy:  0.200 | throughput: 130387.115 img/s |
+[Epoch   3] :  .. done (196 batches)
+[Epoch   3] : | time:  4.558s | trainLoss:  3.319 | trainAccuracy:  0.208 | valLoss:  3.316 | valAccuracy:  0.223 | throughput: 130556.513 img/s |
+[Epoch   4] :  .. done (196 batches)
+[Epoch   4] : | time:  4.579s | trainLoss:  3.164 | trainAccuracy:  0.234 | valLoss:  3.165 | valAccuracy:  0.251 | throughput: 129780.800 img/s |
+[Epoch   5] :  .. done (196 batches)
+[Epoch   5] : | time:  4.554s | trainLoss:  3.027 | trainAccuracy:  0.261 | valLoss:  3.061 | valAccuracy:  0.277 | throughput: 128915.521 img/s |
+[Epoch   6] :  .. done (196 batches)
+[Epoch   6] : | time:  4.546s | trainLoss:  2.912 | trainAccuracy:  0.283 | valLoss:  2.960 | valAccuracy:  0.290 | throughput: 130964.879 img/s |
+[Epoch   7] :  .. done (196 batches)
+[Epoch   7] : | time:  4.532s | trainLoss:  2.813 | trainAccuracy:  0.303 | valLoss:  2.895 | valAccuracy:  0.306 | throughput: 129597.845 img/s |
+[Epoch   8] :  .. done (196 batches)
+[Epoch   8] : | time:  4.528s | trainLoss:  2.718 | trainAccuracy:  0.322 | valLoss:  2.844 | valAccuracy:  0.318 | throughput: 131585.296 img/s |
+[Epoch   9] :  .. done (196 batches)
+[Epoch   9] : | time:  4.550s | trainLoss:  2.626 | trainAccuracy:  0.342 | valLoss:  2.781 | valAccuracy:  0.331 | throughput: 130066.078 img/s |
+[Epoch  10] :  .. done (196 batches)
+[Epoch  10] : | time:  4.537s | trainLoss:  2.539 | trainAccuracy:  0.358 | valLoss:  2.705 | valAccuracy:  0.348 | throughput: 131852.050 img/s |
+[Epoch  11] :  .. done (196 batches)
+[Epoch  11] : | time:  4.548s | trainLoss:  2.464 | trainAccuracy:  0.372 | valLoss:  2.689 | valAccuracy:  0.353 | throughput: 131316.803 img/s |
+[Epoch  12] :  .. done (196 batches)
+[Epoch  12] : | time:  4.583s | trainLoss:  2.390 | trainAccuracy:  0.388 | valLoss:  2.656 | valAccuracy:  0.353 | throughput: 130145.153 img/s |
+[Epoch  13] :  .. done (196 batches)
+[Epoch  13] : | time:  4.543s | trainLoss:  2.323 | trainAccuracy:  0.402 | valLoss:  2.632 | valAccuracy:  0.363 | throughput: 131971.924 img/s |
+[Epoch  14] :  .. done (196 batches)
+[Epoch  14] : | time:  4.551s | trainLoss:  2.258 | trainAccuracy:  0.416 | valLoss:  2.648 | valAccuracy:  0.364 | throughput: 130585.220 img/s |
+[Epoch  15] :  .. done (196 batches)
+[Epoch  15] : | time:  4.569s | trainLoss:  2.201 | trainAccuracy:  0.428 | valLoss:  2.571 | valAccuracy:  0.371 | throughput: 128175.536 img/s |
+[Epoch  16] :  .. done (196 batches)
+[Epoch  16] : | time:  4.561s | trainLoss:  2.139 | trainAccuracy:  0.440 | valLoss:  2.585 | valAccuracy:  0.381 | throughput: 131303.428 img/s |
+[Epoch  17] :  .. done (196 batches)
+[Epoch  17] : | time:  4.581s | trainLoss:  2.084 | trainAccuracy:  0.451 | valLoss:  2.548 | valAccuracy:  0.390 | throughput: 130143.127 img/s |
+[Epoch  18] :  .. done (196 batches)
+[Epoch  18] : | time:  4.579s | trainLoss:  2.024 | trainAccuracy:  0.466 | valLoss:  2.549 | valAccuracy:  0.387 | throughput: 128558.155 img/s |
+[Epoch  19] :  .. done (196 batches)
+[Epoch  19] : | time:  4.550s | trainLoss:  1.973 | trainAccuracy:  0.479 | valLoss:  2.548 | valAccuracy:  0.395 | throughput: 131537.833 img/s |
+[Epoch  20] :  .. done (196 batches)
+[Epoch  20] : | time:  4.569s | trainLoss:  1.929 | trainAccuracy:  0.487 | valLoss:  2.578 | valAccuracy:  0.389 | throughput: 130492.413 img/s |
+[Epoch  21] :  .. done (196 batches)
+[Epoch  21] : | time:  4.572s | trainLoss:  1.874 | trainAccuracy:  0.498 | valLoss:  2.566 | valAccuracy:  0.394 | throughput: 130709.781 img/s |
+[Epoch  22] :  .. done (196 batches)
+[Epoch  22] : | time:  4.562s | trainLoss:  1.831 | trainAccuracy:  0.505 | valLoss:  2.541 | valAccuracy:  0.393 | throughput: 130452.736 img/s |
+[Epoch  23] :  .. done (196 batches)
+[Epoch  23] : | time:  4.560s | trainLoss:  1.798 | trainAccuracy:  0.517 | valLoss:  2.559 | valAccuracy:  0.398 | throughput: 131744.400 img/s |
+[Epoch  24] :  .. done (196 batches)
+[Epoch  24] : | time:  4.543s | trainLoss:  1.754 | trainAccuracy:  0.523 | valLoss:  2.544 | valAccuracy:  0.394 | throughput: 131091.097 img/s |
+[Epoch  25] :  .. done (196 batches)
+[Epoch  25] : | time:  4.559s | trainLoss:  1.711 | trainAccuracy:  0.535 | valLoss:  2.589 | valAccuracy:  0.394 | throughput: 130771.858 img/s |
+[Epoch  26] :  .. done (196 batches)
+[Epoch  26] : | time:  4.550s | trainLoss:  1.677 | trainAccuracy:  0.541 | valLoss:  2.587 | valAccuracy:  0.401 | throughput: 119292.514 img/s |
+[Epoch  27] :  .. done (196 batches)
+[Epoch  27] : | time:  4.560s | trainLoss:  1.637 | trainAccuracy:  0.548 | valLoss:  2.586 | valAccuracy:  0.401 | throughput: 127623.376 img/s |
+[Epoch  28] :  .. done (196 batches)
+[Epoch  28] : | time:  4.564s | trainLoss:  1.601 | trainAccuracy:  0.560 | valLoss:  2.639 | valAccuracy:  0.399 | throughput: 131426.970 img/s |
+[Epoch  29] :  .. done (196 batches)
+[Epoch  29] : | time:  4.574s | trainLoss:  1.566 | trainAccuracy:  0.567 | valLoss:  2.610 | valAccuracy:  0.399 | throughput: 128966.126 img/s |
+Training finished in 0:02:18.093191 hh:mm:ss.ms
 
 ```
 
@@ -294,12 +294,12 @@ Training finished in 0:01:37.227602 hh:mm:ss.ms
 ```
 $ python test.py --model=model_CIFAR-100_029.pth  --dataset=CIFAR-100
 Using device: cuda
-NVIDIA A100 80GB PCIe
+NVIDIA H100 PCIe
 Files already downloaded and verified
 Files already downloaded and verified
 Loaded model for CIFAR-100 from model_CIFAR-100_029.pth
 Testing ....
 Test Metrics (10000 test samples):
-  - Accuracy: 0.423
-Testing finished in 0:00:02.488181 hh:mm:ss.ms
+  - Accuracy: 0.399
+Testing finished in 0:00:01.839540 hh:mm:ss.ms
 ```
