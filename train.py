@@ -30,7 +30,7 @@ def train(device, batch_size, num_epochs, learning_rate, cifar_version):
 
     # print summary and correctly flush the stream
     model_stats = summary(cnn, input_size=(1, 3, 32, 32), row_settings=["var_names"])
-    print(model_stats, flush=True)
+    print("", flush=True)
     time.sleep(1)
 
     # create trainer
