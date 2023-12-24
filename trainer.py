@@ -132,7 +132,7 @@ class Trainer:
         else:
             log_message += "no validation data | "
 
-        log_message += f"Throughput: {throughput:10.3f} img/s |"
+        log_message += f"throughput: {throughput:10.3f} img/s |"
 
         self.logger.info(log_message)
         self.logger.info('\n')
