@@ -297,6 +297,7 @@ Estimated Total Size (MB): 4.10
 [Epoch  29] :  . done (98 batches)
 [Epoch  29] : | time:  3.090s | trainLoss:  1.280 | trainAccuracy:  0.637 | valLoss:  1.751 | valAccuracy:  0.540 | throughput: 110360.605 img/s |
 Training finished in 0:01:36.648186 hh:mm:ss.ms
+```
 
 ### Test on CIFAR-100
 ```
