@@ -44,22 +44,22 @@ class CNN(nn.Module):
 	# Poor man's ResNet with residual connections
 
 	# Input: 3x32x32
-        x =                 F.leaky_relu(self.bn1(self.conv1(x)))
-        x = self.skip2(x) + F.leaky_relu(self.bn2(self.conv2(x))) # residual connection
+        x = F.leaky_relu(                self.bn1(self.conv1(x)))
+        x = F.leaky_relu(self.skip2(x) + self.bn2(self.conv2(x))) # residual connection
         x = self.pool(x)
         x = self.drop(x)
         # Output: 32x16x16
 
         # Input: 32x16x16
-        x =                 F.leaky_relu(self.bn3(self.conv3(x)))
-        x = self.skip4(x) + F.leaky_relu(self.bn4(self.conv4(x))) # residual connection
+        x = F.leaky_relu(                self.bn3(self.conv3(x)))
+        x = F.leaky_relu(self.skip4(x) + self.bn4(self.conv4(x))) # residual connection
         x = self.pool(x)
         x = self.drop(x)
         # Output: 64x8x8
 
         # Input: 64x8x8
-        x =                 F.leaky_relu(self.bn5(self.conv5(x)))
-        x = self.skip6(x) + F.leaky_relu(self.bn6(self.conv6(x))) # residual connection
+        x = F.leaky_relu(                self.bn5(self.conv5(x)))
+        x = F.leaky_relu(self.skip6(x) + self.bn6(self.conv6(x))) # residual connection
         x = self.pool(x)
         x = self.drop(x)
         # Output: 128x4x4
