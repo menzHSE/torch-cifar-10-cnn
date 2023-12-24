@@ -168,12 +168,12 @@ Training finished in 0:01:37.803991 hh:mm:ss.ms
 
 ### Test on CIFAR-10
 ```
-$ python test.py --model=model_CIFAR-10_029.pth
+$ python test.py --model=models/model_CIFAR-10_029.pth
 Using device: cuda
 NVIDIA A100 80GB PCIe
 Files already downloaded and verified
 Files already downloaded and verified
-Loaded model for CIFAR-10 from model_CIFAR-10_029.pth
+Loaded model for CIFAR-10 from models/model_CIFAR-10_029.pth
 Testing ....
 Test Metrics (10000 test samples):
   - Accuracy: 0.826
@@ -303,12 +303,12 @@ Training finished in 0:01:36.648186 hh:mm:ss.ms
 
 ### Test on CIFAR-100
 ```
-$ python test.py --model=model_CIFAR-100_029.pth  --dataset=CIFAR-100
+$ python test.py --model=models/model_CIFAR-100_029.pth  --dataset=CIFAR-100
 Using device: cuda
 NVIDIA A100 80GB PCIe
 Files already downloaded and verified
 Files already downloaded and verified
-Loaded model for CIFAR-100 from model_CIFAR-100_029.pth
+Loaded model for CIFAR-100 from models/model_CIFAR-100_029.pth
 Testing ....
 Test Metrics (10000 test samples):
   - Accuracy: 0.540

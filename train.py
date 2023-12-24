@@ -42,7 +42,7 @@ def train(device, batch_size, num_epochs, learning_rate, cifar_version):
     optimizer = optim.AdamW(cnn.parameters(), lr=learning_rate)
 
     # Train the network
-    fname_save_every_epoch = f"model_{cifar_version}"
+    fname_save_every_epoch = f"models/model_{cifar_version}"
     trainer_obj = trainer.Trainer(cnn, loss_fn, optimizer, device, fname_save_every_epoch, log_level=logging.INFO)
     trainer_obj.train(train_loader, test_loader, num_epochs)
 
