@@ -1,5 +1,5 @@
 # Markus Enzweiler - markus.enzweiler@hs-esslingen.de
-
+import os
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
