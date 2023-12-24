@@ -11,11 +11,18 @@ class CNN(nn.Module):
         super().__init__()
         # network layers
         self.conv1 = nn.Conv2d   (3,        32, 3, padding='same')
-        self.conv2 = nn.Conv2d   (32,       32, 3, padding='same')                    
+        self.conv2 = nn.Conv2d   (32,       32, 3, padding='same')
         self.conv3 = nn.Conv2d   (32,       64, 3, padding='same')
         self.conv4 = nn.Conv2d   (64,       64, 3, padding='same')
         self.conv5 = nn.Conv2d   (64,      128, 3, padding='same')
         self.conv6 = nn.Conv2d   (128,     128, 3, padding='same')
+
+	# Poor man's ResNet ...
+        # skip connections (learned 1x1 convolutions with stride=1)
+        self.skip2 = nn.Conv2d( 32,  32, 1, stride=1, padding=0)
+        self.skip4 = nn.Conv2d( 64,  64, 1, stride=1, padding=0)
+        self.skip6 = nn.Conv2d(128, 128, 1, stride=1, padding=0)
+
 
         self.bn1  = nn.BatchNorm2d( 32)
         self.bn2  = nn.BatchNorm2d( 32)
@@ -25,7 +32,7 @@ class CNN(nn.Module):
         self.bn6  = nn.BatchNorm2d(128)
 
         self.pool  = nn.MaxPool2d(2,         2                   )
-        
+
         self.fc1   = nn.Linear   (128*4*4, 128                   )
         self.fc2   = nn.Linear   (128,     num_classes           )
 
@@ -34,23 +41,25 @@ class CNN(nn.Module):
     # forward pass of the data "x"
     def forward(self, x):
 
-        # Input: 3x32x32
-        x = F.leaky_relu(self.bn1(self.conv1(x)))
-        x = F.leaky_relu(self.bn2(self.conv2(x)))
+	# Poor man's ResNet with residual connections
+
+	# Input: 3x32x32
+        x =                 F.leaky_relu(self.bn1(self.conv1(x)))
+        x = self.skip2(x) + F.leaky_relu(self.bn2(self.conv2(x))) # residual connection
         x = self.pool(x)
         x = self.drop(x)
         # Output: 32x16x16
 
         # Input: 32x16x16
-        x = F.leaky_relu(self.bn3(self.conv3(x)))
-        x = F.leaky_relu(self.bn4(self.conv4(x)))
+        x =                 F.leaky_relu(self.bn3(self.conv3(x)))
+        x = self.skip4(x) + F.leaky_relu(self.bn4(self.conv4(x))) # residual connection
         x = self.pool(x)
         x = self.drop(x)
         # Output: 64x8x8
 
         # Input: 64x8x8
-        x = F.leaky_relu(self.bn5(self.conv5(x)))
-        x = F.leaky_relu(self.bn6(self.conv6(x)))
+        x =                 F.leaky_relu(self.bn5(self.conv5(x)))
+        x = self.skip6(x) + F.leaky_relu(self.bn6(self.conv6(x))) # residual connection
         x = self.pool(x)
         x = self.drop(x)
         # Output: 128x4x4
@@ -63,8 +72,8 @@ class CNN(nn.Module):
         # "softmax" activation will be automatically applied in the cross entropy loss below,
         # see https://pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html
         return x
-    
- 
+
+
     def save(self, fname):
         # Extract the directory path from the file name
         dir_path = os.path.dirname(fname)
