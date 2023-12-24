@@ -286,16 +286,6 @@ Estimated Total Size (MB): 3.18
 [Epoch  29] :  .... done (391 batches)
 [Epoch  29] : | time:  4.660s | trainLoss:  1.327 | trainAccuracy:  0.618 | valLoss:  2.597 | valAccuracy:  0.420 | throughput:  68052.415 img/s |
 Training finished in 0:02:21.358824 hh:mm:ss.ms
-(mmsegmentation-pyTorch-2.0.1-cuda-11.8) python train.py
-Using device: cuda
-NVIDIA H100 PCIe
-Options:
-  Device: GPU
-  Seed: 0
-  Batch size: 128
-  Number of epochs: 30
-  Learning rate: 0.0003
-
 ```
 
 ### Test on CIFAR-100
