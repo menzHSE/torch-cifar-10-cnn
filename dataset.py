@@ -22,7 +22,7 @@ def cifar(batch_size, cifar_version="CIFAR-10", root="./data"):
 def cifar_loader(batch_size, load_fn, root):
 
     transform = transforms.Compose(
-        [transforms.Resize((32, 32)),  # resize to 64x64 pixels
+        [transforms.Resize((32, 32)),  # resize to 32x32 pixels
          transforms.ToTensor()         # convert to tensor. This will also normalize pixels to 0-1
         ])
 
