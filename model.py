@@ -3,8 +3,30 @@ import os
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+import torchvision
 
-class CNN(nn.Module):
+
+class BaseNet(nn.Module):
+    """Base class for neural network models."""
+
+    def save(self, fname):
+        # Extract the directory path from the file name
+        dir_path = os.path.dirname(fname)
+
+        # Check if the directory path is not empty
+        if dir_path:
+            # Check if the directory exists, and create it if it does not
+            if not os.path.exists(dir_path):
+                os.makedirs(dir_path, exist_ok=True)
+
+        # Save the model
+        torch.save(self.state_dict(), fname)
+
+    def load(self, fname):
+        self.load_state_dict(torch.load(fname))
+        self.eval()
+
+class CNN(BaseNet):
     """A simple CNN for CIFAR-10 / CIFAR-100. """
 
     def __init__(self, num_classes):
@@ -79,19 +101,32 @@ class CNN(nn.Module):
         return x
 
 
-    def save(self, fname):
-        # Extract the directory path from the file name
-        dir_path = os.path.dirname(fname)
+class CNNResnet(BaseNet):
+    """Finetuned ResNet for CIFAR-10 / CIFAR-100. """
 
-        # Check if the directory path is not empty
-        if dir_path:
-            # Check if the directory exists, and create it if it does not
-            if not os.path.exists(dir_path):
-                os.makedirs(dir_path, exist_ok=True)
+    def __init__(self, model_name, weights, num_classes):
+        super().__init__()
 
-        # save the model
-        torch.save(self.state_dict(), fname)
+        # load the ResNet model as backbone
+        self.backbone = None
+        if model_name == "resnet18":
+            self.backbone = torchvision.models.resnet18(weights=weights)
+        elif model_name == "resnet34":
+            self.backbone = torchvision.models.resnet34(weights=weights)
+        elif model_name == "resnet50":
+            self.backbone = torchvision.models.resnet50(weights=weights)
+        else:
+            raise ValueError(f"Unknown model: {model_name}")   
 
-    def load(self, fname):
-        self.load_state_dict(torch.load(fname))
-        self.eval()
+        # freeze the parameters of the backbone
+        for param in self.backbone.parameters():
+            param.requires_grad = False 
+        
+        # replace the last layer with a new fully connected layer
+        self.backbone.fc = nn.Linear(self.backbone.fc.in_features, num_classes)
+              
+
+    # forward pass of the data "x"
+    def forward(self, x):
+        return self.backbone(x)
+      

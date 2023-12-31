@@ -208,7 +208,7 @@ class Trainer:
             # get the training data : data is a list of [images, labels]
             # and push the data to the device we are using       
             images, labels = data[0].to(self.device), data[1].to(self.device)
-
+        
             # zero the parameter gradients before the next data batch is processed
             self.optimizer.zero_grad()
 
