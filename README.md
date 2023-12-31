@@ -1,6 +1,8 @@
 # torch-cifar-10-cnn
 This repository contains a small CIFAR-10 / CIFAR-100 ResNet-like CNN implementation in PyTorch. Additionally, ResNets pre-trained on ImageNet can be finetuned to CIFAR-10 / CIFAR-100.
 
+Some small pretrained models are available in the `pretrained_models` directory. 
+
 See https://github.com/menzHSE/mlx-cifar-10-cnn for (more or less) the same model being trained using MLX. 
 
 # Requirements
