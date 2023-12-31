@@ -45,6 +45,10 @@ options:
   --model MODEL         Model filename *.npz
   --dataset {CIFAR-10,CIFAR-100}
                         Select the dataset to use (CIFAR-10 or CIFAR-100)
+  --finetune {resnet18,resnet34,resnet50}
+                        Select the model that has been fine-tuned(resnet18,
+                        resnet34, resnet50), omit for testing the original
+                        model
 ```
 
 # Examples
@@ -322,6 +326,98 @@ Testing finished in 0:00:02.517724 hh:mm:ss.ms
 ```
 
 ## Finetuning a ResNet to CIFAR-100
+
+### Training
 ```
-TBD
+$ python train.py --batchsize=256  --dataset CIFAR-100 --finetune=resnet50 --epochs=10
+Using device: cuda
+NVIDIA H100 PCIe
+Options:
+  Device: GPU
+  Seed: 0
+  Batch size: 256
+  Number of epochs: 10
+  Learning rate: 0.0003
+  Dataset: CIFAR-100
+  Fine-tuning model: resnet50
+Files already downloaded and verified
+Files already downloaded and verified
+===============================================================================================
+Layer (type (var_name))                       Output Shape              Param #
+===============================================================================================
+CNNResnet (CNNResnet)                         [1, 100]                  --
+├─ResNet (backbone)                           [1, 100]                  --
+│    └─Conv2d (conv1)                         [1, 64, 112, 112]         9,408
+│    └─BatchNorm2d (bn1)                      [1, 64, 112, 112]         128
+│    └─ReLU (relu)                            [1, 64, 112, 112]         --
+│    └─MaxPool2d (maxpool)                    [1, 64, 56, 56]           --
+│    └─Sequential (layer1)                    [1, 256, 56, 56]          --
+│    │    └─Bottleneck (0)                    [1, 256, 56, 56]          75,008
+│    │    └─Bottleneck (1)                    [1, 256, 56, 56]          70,400
+│    │    └─Bottleneck (2)                    [1, 256, 56, 56]          70,400
+│    └─Sequential (layer2)                    [1, 512, 28, 28]          --
+│    │    └─Bottleneck (0)                    [1, 512, 28, 28]          379,392
+│    │    └─Bottleneck (1)                    [1, 512, 28, 28]          280,064
+│    │    └─Bottleneck (2)                    [1, 512, 28, 28]          280,064
+│    │    └─Bottleneck (3)                    [1, 512, 28, 28]          280,064
+│    └─Sequential (layer3)                    [1, 1024, 14, 14]         --
+│    │    └─Bottleneck (0)                    [1, 1024, 14, 14]         1,512,448
+│    │    └─Bottleneck (1)                    [1, 1024, 14, 14]         1,117,184
+│    │    └─Bottleneck (2)                    [1, 1024, 14, 14]         1,117,184
+│    │    └─Bottleneck (3)                    [1, 1024, 14, 14]         1,117,184
+│    │    └─Bottleneck (4)                    [1, 1024, 14, 14]         1,117,184
+│    │    └─Bottleneck (5)                    [1, 1024, 14, 14]         1,117,184
+│    └─Sequential (layer4)                    [1, 2048, 7, 7]           --
+│    │    └─Bottleneck (0)                    [1, 2048, 7, 7]           6,039,552
+│    │    └─Bottleneck (1)                    [1, 2048, 7, 7]           4,462,592
+│    │    └─Bottleneck (2)                    [1, 2048, 7, 7]           4,462,592
+│    └─AdaptiveAvgPool2d (avgpool)            [1, 2048, 1, 1]           --
+│    └─Linear (fc)                            [1, 100]                  204,900
+
+===============================================================================================
+Total params: 23,712,932
+Trainable params: 23,712,932
+Non-trainable params: 0
+Total mult-adds (Units.GIGABYTES): 4.09
+===============================================================================================
+Input size (MB): 0.60
+Forward/backward pass size (MB): 177.82
+Params size (MB): 94.85
+Estimated Total Size (MB): 273.28
+===============================================================================================
+
+[Epoch   0] :  .. done (196 batches)
+[Epoch   0] : | time: 97.852s | trainLoss:  1.510 | trainAccuracy:  0.599 | valLoss:  1.159 | valAccuracy:  0.674 | throughput:  17982.631 img/s |
+[Epoch   1] :  .. done (196 batches)
+[Epoch   1] : | time: 95.895s | trainLoss:  0.703 | trainAccuracy:  0.789 | valLoss:  1.025 | valAccuracy:  0.707 | throughput:  19343.251 img/s |
+[Epoch   2] :  .. done (196 batches)
+[Epoch   2] : | time: 95.684s | trainLoss:  0.448 | trainAccuracy:  0.862 | valLoss:  0.962 | valAccuracy:  0.731 | throughput:  19276.531 img/s |
+[Epoch   3] :  .. done (196 batches)
+[Epoch   3] : | time: 95.665s | trainLoss:  0.291 | trainAccuracy:  0.907 | valLoss:  1.015 | valAccuracy:  0.738 | throughput:  19278.936 img/s |
+[Epoch   4] :  .. done (196 batches)
+[Epoch   4] : | time: 95.989s | trainLoss:  0.218 | trainAccuracy:  0.930 | valLoss:  1.009 | valAccuracy:  0.739 | throughput:  19303.313 img/s |
+[Epoch   5] :  .. done (196 batches)
+[Epoch   5] : | time: 95.781s | trainLoss:  0.151 | trainAccuracy:  0.953 | valLoss:  1.044 | valAccuracy:  0.736 | throughput:  19097.337 img/s |
+[Epoch   6] :  .. done (196 batches)
+[Epoch   6] : | time: 95.813s | trainLoss:  0.153 | trainAccuracy:  0.952 | valLoss:  1.064 | valAccuracy:  0.747 | throughput:  19101.415 img/s |
+[Epoch   7] :  .. done (196 batches)
+[Epoch   7] : | time: 95.560s | trainLoss:  0.130 | trainAccuracy:  0.959 | valLoss:  1.149 | valAccuracy:  0.732 | throughput:  19133.268 img/s |
+[Epoch   8] :  .. done (196 batches)
+[Epoch   8] : | time: 95.648s | trainLoss:  0.128 | trainAccuracy:  0.960 | valLoss:  1.121 | valAccuracy:  0.740 | throughput:  19182.407 img/s |
+[Epoch   9] :  .. done (196 batches)
+[Epoch   9] : | time: 95.519s | trainLoss:  0.116 | trainAccuracy:  0.963 | valLoss:  1.139 | valAccuracy:  0.741 | throughput:  19045.209 img/s |
+Training finished in 0:16:00.498346 hh:mm:ss.ms
+```
+### Testing
+```
+$ python test.py --model=models/model_resnet50_CIFAR-100_009.pth --dataset CIFAR-100 --finetune=resnet50
+Using device: cuda
+NVIDIA H100 PCIe
+Files already downloaded and verified
+Files already downloaded and verified
+Loaded model for CIFAR-100 from models/model_resnet50_CIFAR-100_009.pth
+Testing ....
+Test Metrics (10000 test samples):
+  - Accuracy: 0.741
+Testing finished in 0:00:05.771772 hh:mm:ss.ms
 ```
