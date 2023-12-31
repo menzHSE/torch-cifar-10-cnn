@@ -36,10 +36,10 @@ def cifar_loader(batch_size, custom_transforms, load_fn, root):
    
     # Data loaders
     train_loader = torch.utils.data.DataLoader(tr, batch_size=batch_size,
-                                               shuffle=True, pin_memory=True, num_workers=2)
+                                               shuffle=True, pin_memory=True, num_workers=4)
     
     test_loader  = torch.utils.data.DataLoader(test, batch_size=batch_size,
-                                               shuffle=False, pin_memory=True, num_workers=2)
+                                               shuffle=False, pin_memory=True, num_workers=4)
     
     return train_loader, test_loader, tr.classes    
 
