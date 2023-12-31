@@ -22,8 +22,8 @@ class BaseNet(nn.Module):
         # Save the model
         torch.save(self.state_dict(), fname)
 
-    def load(self, fname):
-        self.load_state_dict(torch.load(fname))
+    def load(self, fname, device):
+        self.load_state_dict(torch.load(fname, map_location=device))
         self.eval()
 
 class CNN(BaseNet):

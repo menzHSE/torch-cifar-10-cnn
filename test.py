@@ -51,7 +51,7 @@ def test(device, model_fname, cifar_version, finetune_model):
     else:
         cnn = model.CNN(num_classes)
         
-    cnn.load(model_fname)
+    cnn.load(model_fname, device)
     print(f"Loaded model for {cifar_version} from {model_fname}")
 
     # create tester
