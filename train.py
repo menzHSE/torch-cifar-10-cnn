@@ -4,7 +4,6 @@
 
 import argparse
 import time
-import math
 import numpy as np
 import logging
 
@@ -90,7 +89,7 @@ if __name__ == "__main__":
                         help="Select the dataset to use (CIFAR-10 or CIFAR-100)")
     parser.add_argument("--finetune", type=str, choices=['resnet18', 'resnet34', 'resnet50'], default=None, 
                         help="Select the model for fine-tuning (resnet18, resnet34, resnet50), " +
-                             "leave empty for training from scratch")
+                             "omit for training from scratch")
 
          
     args = parser.parse_args()

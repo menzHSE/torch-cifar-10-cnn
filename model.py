@@ -118,9 +118,9 @@ class CNNResnet(BaseNet):
         else:
             raise ValueError(f"Unknown model: {model_name}")   
 
-        # freeze the parameters of the backbone
-        for param in self.backbone.parameters():
-            param.requires_grad = False 
+        # might wanna freeze the parameters of the backbone
+        #for param in self.backbone.parameters():
+        #    param.requires_grad = False 
         
         # replace the last layer with a new fully connected layer
         self.backbone.fc = nn.Linear(self.backbone.fc.in_features, num_classes)
