@@ -331,7 +331,7 @@ Testing finished in 0:00:02.517724 hh:mm:ss.ms
 
 ### Training
 ```
-$ python train.py --batchsize=256  --dataset CIFAR-100 --finetune=resnet50 --epochs=10
+$ python train.py --batchsize=256  --dataset=CIFAR-100 --finetune=resnet50 --epochs=10
 Using device: cuda
 NVIDIA H100 PCIe
 Options:
@@ -412,7 +412,7 @@ Training finished in 0:16:00.498346 hh:mm:ss.ms
 ```
 ### Testing
 ```
-$ python test.py --model=models/model_resnet50_CIFAR-100_009.pth --dataset CIFAR-100 --finetune=resnet50
+$ python test.py --model=models/model_resnet50_CIFAR-100_009.pth --dataset=CIFAR-100 --finetune=resnet50
 Using device: cuda
 NVIDIA H100 PCIe
 Files already downloaded and verified
