@@ -6,36 +6,40 @@ import numpy as np
 from PIL import Image
 import torch
 import torchvision
-import torchvision.transforms as transforms
+import torchvision.transforms as T
 
-def cifar(batch_size, cifar_version="CIFAR-10", root="./data"):
+def cifar(batch_size, custom_transforms, cifar_version="CIFAR-10", root="./data"):
     if (cifar_version == "CIFAR-10"):
         load_fn = torchvision.datasets.CIFAR10
-        return cifar_loader(batch_size, load_fn, root)
+        return cifar_loader(batch_size, custom_transforms, load_fn, root)
     elif (cifar_version == "CIFAR-100"):
         load_fn = torchvision.datasets.CIFAR100
-        return cifar_loader(batch_size, load_fn, root)
+        return cifar_loader(batch_size, custom_transforms, load_fn, root)
     else:
         raise ValueError(f"Unknown CIFAR version: {cifar_version}")
     
 
-def cifar_loader(batch_size, load_fn, root):
+def cifar_loader(batch_size, custom_transforms, load_fn, root):
 
-    transform = transforms.Compose(
-        [transforms.Resize((32, 32)),  # resize to 32x32 pixels
-         transforms.ToTensor()         # convert to tensor. This will also normalize pixels to 0-1
-        ])
+    transforms_list = None
+    if custom_transforms is not None:
+        transforms_list = custom_transforms
+    else:
+        transforms_list = T.Compose(
+            [T.Resize((32, 32)),  # resize to 32x32 pixels
+             T.ToTensor()          # convert to tensor. This will also normalize pixels to 0-1
+            ])
 
     # load train and test sets using torchvision
-    tr   = load_fn(root=root, train=True,   download=True, transform=transform)
-    test = load_fn(root=root, train=False,  download=True, transform=transform)
+    tr   = load_fn(root=root, train=True,   download=True, transform=transforms_list)
+    test = load_fn(root=root, train=False,  download=True, transform=transforms_list)
    
     # Data loaders
     train_loader = torch.utils.data.DataLoader(tr, batch_size=batch_size,
-                                               shuffle=True, pin_memory=True, num_workers=2)
+                                               shuffle=True, pin_memory=True, num_workers=4)
     
     test_loader  = torch.utils.data.DataLoader(test, batch_size=batch_size,
-                                               shuffle=False, pin_memory=True, num_workers=2)
+                                               shuffle=False, pin_memory=True, num_workers=4)
     
     return train_loader, test_loader, tr.classes    
 
