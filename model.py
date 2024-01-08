@@ -1,5 +1,6 @@
 # Markus Enzweiler - markus.enzweiler@hs-esslingen.de
 import os
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -26,74 +27,72 @@ class BaseNet(nn.Module):
         self.load_state_dict(torch.load(fname, map_location=device))
         self.eval()
 
+
 class CNN(BaseNet):
-    """A simple CNN for CIFAR-10 / CIFAR-100. """
+    """A simple CNN for CIFAR-10 / CIFAR-100."""
 
     def __init__(self, num_classes):
         super().__init__()
         # network layers
-        self.conv1 = nn.Conv2d   (3,        32, 3, padding='same')
-        self.conv2 = nn.Conv2d   (32,       32, 3, padding='same')
-        self.conv3 = nn.Conv2d   (32,       64, 3, padding='same')
-        self.conv4 = nn.Conv2d   (64,       64, 3, padding='same')
-        self.conv5 = nn.Conv2d   (64,      128, 3, padding='same')
-        self.conv6 = nn.Conv2d   (128,     128, 3, padding='same')
+        self.conv1 = nn.Conv2d(3, 32, 3, padding="same")
+        self.conv2 = nn.Conv2d(32, 32, 3, padding="same")
+        self.conv3 = nn.Conv2d(32, 64, 3, padding="same")
+        self.conv4 = nn.Conv2d(64, 64, 3, padding="same")
+        self.conv5 = nn.Conv2d(64, 128, 3, padding="same")
+        self.conv6 = nn.Conv2d(128, 128, 3, padding="same")
 
-	# Poor man's ResNet ...
+        # Poor man's ResNet ...
         # skip connections (learned 1x1 convolutions with stride=1)
-        self.skip2 = nn.Conv2d( 32,  32, 1, stride=1, padding=0)
-        self.skip4 = nn.Conv2d( 64,  64, 1, stride=1, padding=0)
+        self.skip2 = nn.Conv2d(32, 32, 1, stride=1, padding=0)
+        self.skip4 = nn.Conv2d(64, 64, 1, stride=1, padding=0)
         self.skip6 = nn.Conv2d(128, 128, 1, stride=1, padding=0)
 
+        self.bn1 = nn.BatchNorm2d(32)
+        self.bn2 = nn.BatchNorm2d(32)
+        self.bn3 = nn.BatchNorm2d(64)
+        self.bn4 = nn.BatchNorm2d(64)
+        self.bn5 = nn.BatchNorm2d(128)
+        self.bn6 = nn.BatchNorm2d(128)
 
-        self.bn1  = nn.BatchNorm2d( 32)
-        self.bn2  = nn.BatchNorm2d( 32)
-        self.bn3  = nn.BatchNorm2d( 64)
-        self.bn4  = nn.BatchNorm2d( 64)
-        self.bn5  = nn.BatchNorm2d(128)
-        self.bn6  = nn.BatchNorm2d(128)
+        self.pool = nn.MaxPool2d(2, 2)
 
-        self.pool  = nn.MaxPool2d(2,         2                   )
+        self.fc1 = nn.Linear(128 * 4 * 4, 128)
+        self.fc2 = nn.Linear(128, num_classes)
 
-        self.fc1   = nn.Linear   (128*4*4, 128                   )
-        self.fc2   = nn.Linear   (128,     num_classes           )
-
-        self.drop  = nn.Dropout(0.25)
+        self.drop = nn.Dropout(0.25)
 
     # forward pass of the data "x"
     def forward(self, x):
+        # Poor man's ResNet with residual connections
 
-	# Poor man's ResNet with residual connections
-
-	# For some reason, residual connections work better in this
+        # For some reason, residual connections work better in this
         # example with relu() applied before the addition and not after
         # the addition as in the original ResNet paper.
 
-
-	# Input: 3x32x32
-        x =                 F.leaky_relu(self.bn1(self.conv1(x)))
-        x = self.skip2(x) + F.leaky_relu(self.bn2(self.conv2(x))) # residual connection
+        # Input: 3x32x32
+        x = F.leaky_relu(self.bn1(self.conv1(x)))
+        x = self.skip2(x) + F.leaky_relu(self.bn2(self.conv2(x)))  # residual connection
         x = self.pool(x)
         x = self.drop(x)
         # Output: 32x16x16
 
         # Input: 32x16x16
-        x =                 F.leaky_relu(self.bn3(self.conv3(x)))
-        x = self.skip4(x) + F.leaky_relu(self.bn4(self.conv4(x))) # residual connection
+        x = F.leaky_relu(self.bn3(self.conv3(x)))
+        x = self.skip4(x) + F.leaky_relu(self.bn4(self.conv4(x)))  # residual connection
         x = self.pool(x)
         x = self.drop(x)
         # Output: 64x8x8
 
         # Input: 64x8x8
-        x =                 F.leaky_relu(self.bn5(self.conv5(x)))
-        x = self.skip6(x) + F.leaky_relu(self.bn6(self.conv6(x))) # residual connection
+        x = F.leaky_relu(self.bn5(self.conv5(x)))
+        x = self.skip6(x) + F.leaky_relu(self.bn6(self.conv6(x)))  # residual connection
         x = self.pool(x)
         x = self.drop(x)
         # Output: 128x4x4
 
         # Input: 128x4x4
 
-        x = torch.flatten(x, 1) # flatten all dimensions except batch
+        x = torch.flatten(x, 1)  # flatten all dimensions except batch
         x = F.leaky_relu(self.fc1(x))
         x = self.fc2(x)
         # "softmax" activation will be automatically applied in the cross entropy loss below,
@@ -102,7 +101,7 @@ class CNN(BaseNet):
 
 
 class CNNResnet(BaseNet):
-    """Finetuned ResNet for CIFAR-10 / CIFAR-100. """
+    """Finetuned ResNet for CIFAR-10 / CIFAR-100."""
 
     def __init__(self, model_name, weights, num_classes):
         super().__init__()
@@ -116,17 +115,15 @@ class CNNResnet(BaseNet):
         elif model_name == "resnet50":
             self.backbone = torchvision.models.resnet50(weights=weights)
         else:
-            raise ValueError(f"Unknown model: {model_name}")   
+            raise ValueError(f"Unknown model: {model_name}")
 
         # might wanna freeze the parameters of the backbone
-        #for param in self.backbone.parameters():
-        #    param.requires_grad = False 
-        
+        # for param in self.backbone.parameters():
+        #    param.requires_grad = False
+
         # replace the last layer with a new fully connected layer
         self.backbone.fc = nn.Linear(self.backbone.fc.in_features, num_classes)
-              
 
     # forward pass of the data "x"
     def forward(self, x):
         return self.backbone(x)
-      
