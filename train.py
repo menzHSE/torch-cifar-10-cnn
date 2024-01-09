@@ -85,7 +85,7 @@ def train(device, batch_size, num_epochs, learning_rate, cifar_version, finetune
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        "Train a simple CNN on CIFAR-10 / CIFAR_100 with PyTorch."
+        description="Train a simple CNN on CIFAR-10 / CIFAR_100 with PyTorch."
     )
 
     parser.add_argument(

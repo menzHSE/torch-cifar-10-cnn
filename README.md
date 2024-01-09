@@ -19,12 +19,14 @@ See `requirements.txt`
 # Usage
 ```
 $ python train.py -h
-usage: Train a simple CNN on CIFAR-10 / CIFAR_100 with PyTorch. [-h] [--cpu] [--seed SEED] [--batchsize BATCHSIZE] [--epochs EPOCHS]
-                                                            [--lr LR] [--dataset {CIFAR-10,CIFAR-100}]
+usage: train.py [-h] [--cpu] [--seed SEED] [--batchsize BATCHSIZE] [--epochs EPOCHS] [--lr LR]
+                [--dataset {CIFAR-10,CIFAR-100}] [--finetune {resnet18,resnet34,resnet50}]
+
+Train a simple CNN on CIFAR-10 / CIFAR_100 with PyTorch.
 
 options:
   -h, --help            show this help message and exit
-  --cpu                 Use CPU instead of Metal GPU acceleration
+  --cpu                 Use CPU instead of GPU (cuda/mps) acceleration
   --seed SEED           Random seed
   --batchsize BATCHSIZE
                         Batch size for training
@@ -33,24 +35,26 @@ options:
   --dataset {CIFAR-10,CIFAR-100}
                         Select the dataset to use (CIFAR-10 or CIFAR-100)
   --finetune {resnet18,resnet34,resnet50}
-                        Select the model for fine-tuning (resnet18, resnet34, resnet50),
-                        omit for training from scratch
+                        Select the model for fine-tuning (resnet18, resnet34, resnet50), omit for training
+                        from scratch
 ```
 
 ```
-python test.py -h
-usage: Test a simple CNN on CIFAR-10 / CIFAR-100 with PyTorch. [-h] [--cpu] --model MODEL [--dataset {CIFAR-10,CIFAR-100}]
+$ python test.py -h
+usage: test.py [-h] [--cpu] --model MODEL [--dataset {CIFAR-10,CIFAR-100}]
+               [--finetune {resnet18,resnet34,resnet50}]
+
+Test a simple CNN on CIFAR-10 / CIFAR-100 with PyTorch.
 
 options:
   -h, --help            show this help message and exit
-  --cpu                 Use CPU instead of Metal GPU acceleration
-  --model MODEL         Model filename *.npz
+  --cpu                 Use CPU instead of GPU (cuda/mps) acceleration
+  --model MODEL         Model filename *.pth
   --dataset {CIFAR-10,CIFAR-100}
                         Select the dataset to use (CIFAR-10 or CIFAR-100)
   --finetune {resnet18,resnet34,resnet50}
-                        Select the model that has been fine-tuned(resnet18,
-                        resnet34, resnet50), omit for testing the original
-                        model
+                        Select the model that has been fine-tuned(resnet18, resnet34, resnet50), omit for
+                        testing the original model
 ```
 
 # Examples

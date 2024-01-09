@@ -60,7 +60,7 @@ def test(device, model_fname, cifar_version, finetune_model):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        "Test a simple CNN on CIFAR-10 / CIFAR-100 with PyTorch."
+        description="Test a simple CNN on CIFAR-10 / CIFAR-100 with PyTorch."
     )
 
     parser.add_argument(
